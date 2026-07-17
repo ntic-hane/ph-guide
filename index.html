@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>フィリピン出張 渡航ガイド | NTIC</title>
+<style>
+  :root {
+    --navy: #1E3A5F;
+    --steel: #4A6FA5;
+    --gold: #C9A84C;
+    --light: #F4F6F9;
+    --white: #FFFFFF;
+    --text: #1A1A2E;
+    --muted: #6B7280;
+    --danger: #C0392B;
+    --success: #27AE60;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'BIZ UDPGothic', 'Noto Sans JP', sans-serif;
+    background: var(--light);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ヘッダー */
+  .header {
+    background: var(--navy);
+    padding: 20px 16px 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    right: -30px; top: -30px;
+    width: 180px; height: 180px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 50%;
+  }
+  .header-flag { font-size: 32px; margin-bottom: 6px; }
+  .header-title {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+  .header-title span { color: var(--gold); }
+  .header-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 4px;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 20px;
+    padding: 4px 10px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--gold);
+  }
+
+  /* コンテンツ */
+  .content { padding: 16px; max-width: 480px; margin: 0 auto; }
+
+  /* セクションカード */
+  .card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .card-header.navy { background: var(--navy); }
+  .card-header.steel { background: var(--steel); }
+  .card-header.gold-h { background: var(--gold); color: var(--navy); }
+  .card-header .icon { font-size: 18px; }
+  .badge-required {
+    margin-left: auto;
+    background: var(--danger);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .badge-rec {
+    margin-left: auto;
+    background: var(--steel);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .card-body { padding: 14px 16px; }
+
+  /* チェックリスト */
+  .check-list { list-style: none; }
+  .check-item {
+    display: flex;
+    gap: 10px;
+    padding: 7px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #F0F3F7;
+    align-items: flex-start;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-icon { flex-shrink: 0; margin-top: 1px; font-size: 16px; }
+  .check-text { flex: 1; }
+  .check-text strong { color: var(--navy); }
+
+  /* URLボタン */
+  .url-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 12px 0 10px;
+    text-decoration: none;
+  }
+  .url-btn.steel-btn { background: var(--steel); }
+
+  /* 警告ボックス */
+  .alert {
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .alert.warn { background: #FFF8E7; border-left: 3px solid var(--gold); color: #7A5C10; }
+  .alert.info { background: #EBF3FF; border-left: 3px solid var(--steel); color: #1E3A5F; }
+  .alert.success { background: #E8F8EE; border-left: 3px solid var(--success); color: #1A5C35; }
+  .alert-icon { flex-shrink: 0; font-size: 16px; }
+
+  /* 小見出し */
+  .sub-heading {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 12px 0 6px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--light);
+  }
+
+  /* 必要なもの グリッド */
+  .needs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .need-item {
+    background: var(--light);
+    border-radius: 8px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+  }
+  .need-icon { font-size: 20px; flex-shrink: 0; }
+
+  /* 持ち物グリッド */
+  .items-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .item-col-header {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  .item-col-header.req { background: var(--danger); color: #fff; }
+  .item-col-header.rec { background: var(--steel); color: #fff; }
+  .item-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    padding: 4px 0;
+  }
+  .item-icon { font-size: 18px; width: 24px; text-align: center; }
+
+  /* フロー */
+  .flow-list { list-style: none; }
+  .flow-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    position: relative;
+  }
+  .flow-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 42px;
+    bottom: 0;
+    width: 2px;
+    background: #E2E8F0;
+  }
+  .flow-num {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 900;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+  .flow-num.highlight { background: var(--gold); color: var(--navy); }
+  .flow-content { flex: 1; padding-top: 2px; }
+  .flow-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+  .flow-title.gold { color: var(--gold); }
+  .flow-icon-big { font-size: 22px; margin-bottom: 2px; }
+  .flow-desc { font-size: 13px; color: var(--muted); }
+
+  /* 2カラムカード */
+  .two-card-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .two-card-row .card { margin-bottom: 0; }
+
+  /* フッター */
+  .footer {
+    background: var(--navy);
+    padding: 16px;
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  .footer strong { color: var(--gold); display: block; font-size: 13px; margin-bottom: 4px; }
+
+  /* セクション区切り */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 20px 0 8px;
+  }
+
+  /* divider */
+  .divider { height: 1px; background: #F0F3F7; margin: 8px 0; }
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<div class="header">
+  <div class="header-logo">
+    <img src="data:image/png;base64,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" alt="NTIC" style="height:36px; filter:brightness(0) invert(1);">
+  </div>
+  <div class="header-flag" style="margin-top:10px;">🇵🇭</div>
+  <div class="header-title">フィリピン出張<br><span>渡航ガイド</span></div>
+  <div class="header-sub">〜 はじめてフィリピン出張される方へ 〜</div>
+  <div class="header-badge">✈ 対象空港：マニラ（NAIA）</div>
+</div>
+
+<div class="content">
+
+  <!-- eTravel -->
+  <div class="section-label">行き前の準備</div>
+
+  <div class="card">
+    <div class="card-header navy">
+      <span class="icon">📱</span> eTravel登録
+      <span class="badge-required">必須</span>
+    </div>
+    <div class="card-body">
+      <ul class="check-list">
+        <li class="check-item">
+          <span class="check-icon">✅</span>
+          <span class="check-text">フィリピン入国に<strong>必須</strong>・全員対象・<strong>無料</strong></span>
+        </li>
+        <li class="check-item">
+          <span class="check-icon">✅</span>
+          <span class="check-text">到着<strong>72時間前</strong>から登録可能</span>
+        </li>
+        <li class="check-item">
+          <span class="check-icon">✅</span>
+          <span class="check-text">登録後のQRコードをスクリーンショット保存</span>
+        </li>
+        <li class="check-item">
+          <span class="check-icon">✅</span>
+          <span class="check-text">チェックイン時・入国審査時に提示</span>
+        </li>
+      </ul>
+
+      <a href="https://etravel.gov.ph" class="url-btn" target="_blank">🌐 etravel.gov.ph</a>
+
+      <div class="alert warn">
+        <span class="alert-icon">⚠️</span>
+        <span><strong>詐欺サイト注意！</strong>　公式は「etravel.gov.ph」のみ。登録は無料です。決済を求められたら詐欺です。</span>
+      </div>
+
+      <div class="sub-heading">登録に必要なもの</div>
+      <div class="needs-grid">
+        <div class="need-item"><span class="need-icon">🛂</span><span>パスポート（番号・有効期限）</span></div>
+        <div class="need-item"><span class="need-icon">✈️</span><span>便名・出発日・到着日</span></div>
+        <div class="need-item"><span class="need-icon">🏨</span><span>滞在先ホテル名と住所</span></div>
+        <div class="need-item"><span class="need-icon">✉️</span><span>メールアドレス</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 渡航前チェックリスト -->
+  <div class="card">
+    <div class="card-header steel">
+      <span class="icon">📋</span> 渡航前チェックリスト
+    </div>
+    <div class="card-body">
+      <div class="sub-heading" style="margin-top:0;">パスポート確認</div>
+      <ul class="check-list">
+        <li class="check-item">
+          <span class="check-icon">✅</span>
+          <span class="check-text">残存有効期限：滞在日数＋<strong>6ヶ月以上</strong></span>
+        </li>
+        <li class="check-item">
+          <span class="check-icon">✅</span>
+          <span class="check-text">氏名・番号に誤りがないか確認</span>
+        </li>
+        <li class="check-item">
+          <span class="check-icon">✅</span>
+          <span class="check-text">帰りの航空券（Eチケット）をスクショ保存</span>
+        </li>
+        <li class="check-item">
+          <span class="check-icon">✅</span>
+          <span class="check-text">パスポートのコピーを1部持参すると安心</span>
+        </li>
+      </ul>
+
+      <div class="sub-heading">持ち物チェック</div>
+      <div class="items-grid">
+        <div>
+          <div class="item-col-header req">必須</div>
+          <div class="item-row"><span class="item-icon">🛂</span>パスポート</div>
+          <div class="item-row"><span class="item-icon">🎫</span>航空券（Eチケット）</div>
+          <div class="item-row"><span class="item-icon">📱</span>eTravelのQRコード</div>
+          <div class="item-row"><span class="item-icon">💴</span>日本円（空港で両替）</div>
+        </div>
+        <div>
+          <div class="item-col-header rec">推奨</div>
+          <div class="item-row"><span class="item-icon">📄</span>パスポートのコピー</div>
+          <div class="item-row"><span class="item-icon">🛡️</span>海外旅行保険証書</div>
+          <div class="item-row"><span class="item-icon">💊</span>常備薬・市販薬</div>
+          <div class="item-row"><span class="item-icon">🔋</span>モバイルバッテリー</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 空港フロー -->
+  <div class="section-label">マニラ到着後</div>
+
+  <div class="card">
+    <div class="card-header navy">
+      <span class="icon">🛬</span> マニラ到着から合流まで
+    </div>
+    <div class="card-body">
+      <ul class="flow-list">
+        <li class="flow-item">
+          <div class="flow-num">1</div>
+          <div class="flow-content">
+            <div class="flow-icon-big">✈️</div>
+            <div class="flow-title">着陸・降機</div>
+            <div class="flow-desc">案内表示に従いImmigration方向へ</div>
+          </div>
+        </li>
+        <li class="flow-item">
+          <div class="flow-num">2</div>
+          <div class="flow-content">
+            <div class="flow-icon-big">🛂</div>
+            <div class="flow-title">入国審査</div>
+            <div class="flow-desc">Foreigners列へ。パスポート＋QRコード提示</div>
+          </div>
+        </li>
+        <li class="flow-item">
+          <div class="flow-num">3</div>
+          <div class="flow-content">
+            <div class="flow-icon-big">🧳</div>
+            <div class="flow-title">荷物受取</div>
+            <div class="flow-desc">ターンテーブルでスーツケースを受け取る</div>
+          </div>
+        </li>
+        <li class="flow-item">
+          <div class="flow-num">4</div>
+          <div class="flow-content">
+            <div class="flow-icon-big">🏛</div>
+            <div class="flow-title">税関通過</div>
+            <div class="flow-desc">申告品がなければNothing to Declareレーンへ</div>
+          </div>
+        </li>
+        <li class="flow-item">
+          <div class="flow-num highlight">5</div>
+          <div class="flow-content">
+            <div class="flow-icon-big">👋</div>
+            <div class="flow-title gold">NTICと合流！</div>
+            <div class="flow-desc">お名前のボードでアテンドが待機中</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="alert success" style="margin-top:8px;">
+        <span class="alert-icon">✅</span>
+        <span><strong>合流後は安心！</strong>　運転手付きで移動・ホテル送迎・両替・アポイント同行まで全面サポートします。空港を出てからはお任せください。</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 帰国 -->
+  <div class="section-label">帰国時</div>
+
+  <div class="card">
+    <div class="card-header steel">
+      <span class="icon">🇵🇭</span> 帰国：フィリピン出国
+    </div>
+    <div class="card-body">
+      <ul class="check-list">
+        <li class="check-item">
+          <span class="check-icon">✅</span>
+          <span class="check-text"><strong>eTravelの再申請は不要</strong>（日本国籍の方）</span>
+        </li>
+        <li class="check-item">
+          <span class="check-icon">✅</span>
+          <span class="check-text">チェックインカウンターでパスポート・航空券を提示</span>
+        </li>
+        <li class="check-item">
+          <span class="check-icon">✅</span>
+          <span class="check-text">残ペソは空港内両替所で日本円に戻せます</span>
+        </li>
+      </ul>
+      <div class="alert info" style="margin-top:10px;">
+        <span class="alert-icon">ℹ️</span>
+        <span>帰りはeTravelの再申請なし。通常の搭乗手続きのみでOKです。</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header navy">
+      <span class="icon">🇯🇵</span> 帰国：日本入国
+      <span class="badge-rec">推奨</span>
+    </div>
+    <div class="card-body">
+      <div class="sub-heading" style="margin-top:0;">Visit Japan Web登録（税関申告）</div>
+      <ul class="check-list">
+        <li class="check-item">
+          <span class="check-icon">✅</span>
+          <span class="check-text">デジタル庁提供の<strong>無料</strong>サービス</span>
+        </li>
+        <li class="check-item">
+          <span class="check-icon">✅</span>
+          <span class="check-text">税関申告をオンラインで事前完了</span>
+        </li>
+        <li class="check-item">
+          <span class="check-icon">✅</span>
+          <span class="check-text"><strong>帰国便搭乗前まで</strong>に登録推奨</span>
+        </li>
+        <li class="check-item">
+          <span class="check-icon">✅</span>
+          <span class="check-text">QRコードを空港の電子申告ゲートに提示</span>
+        </li>
+      </ul>
+      <a href="https://vjw-lp.digital.go.jp" class="url-btn steel-btn" target="_blank">🌐 vjw-lp.digital.go.jp</a>
+      <div class="alert info">
+        <span class="alert-icon">ℹ️</span>
+        <span>登録しなくても従来の紙の申告書で帰国できます。</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- フッター -->
+<div class="footer">
+  <img src="data:image/png;base64,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" alt="NTIC" style="height:28px; filter:brightness(0) invert(1); margin-bottom:10px;">
+  <strong>日本トータル情報事業協同組合（NTIC）</strong>
+  〒510-0086 三重県四日市市<br>
+  ご不明な点はNTICまでお気軽にご連絡ください<br><br>
+  <a href="https://www.ntic.jp/" target="_blank" style="color:#C9A84C; font-weight:700; text-decoration:none;">🌐 www.ntic.jp</a>
+</div>
+
+</body>
+</html>
